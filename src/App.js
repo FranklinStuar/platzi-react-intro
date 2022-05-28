@@ -6,7 +6,8 @@ import logo from './logo.svg';
 import './App.css';
 const todos = [
   {text:"hacer lista", completed:false},
-  {text:"curso", completed:false},
+  {text:"curso", completed:true},
+  {text:"trabajar", completed:true},
   {text:"estudiar", completed:false},
 ]
 function App(props) {
