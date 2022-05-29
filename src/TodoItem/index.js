@@ -1,20 +1,25 @@
 import React from 'react'
 import "./TodoItem.css"
-function TodoItem(props){
+function TodoItem({
+  changeCompleteTodo,
+  completed,
+  text,
+  onDelete
+}){
   
   return(
     <li className="TodoItem">
       <span 
-        onClick={ props.onComplete} 
-        className={`Icon Icon-check ${props.completed && 'Icon-check--active'}`}
+        onClick={ changeCompleteTodo} 
+        className={`Icon Icon-check ${completed && 'Icon-check--active'}`}
       > √ </span>
 
-      <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>
-        {props.text}
+      <p className={`TodoItem-p ${completed && 'TodoItem-p--complete'}`}>
+        {text}
       </p>
       
       <span 
-        onClick={ props.onDelete}  
+        onClick={ onDelete}  
         className="Icon Icon-delete"
       > X </span>
     </li>
