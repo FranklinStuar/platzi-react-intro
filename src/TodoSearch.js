@@ -1,10 +1,9 @@
 import React from 'react'
 import "./TodoSearch.css"
-function TodoSearch(){
-  const [searchValue,setSearchValue] = React.useState("")
+
+function TodoSearch({searchValue,setSearchValue}){
   // const [estado,setEstado] = React.useState("valor por defecto")
   const onSearchValueSearch = (evt) => {
-    console.log(evt.target.value)
     setSearchValue(evt.target.value)
   }
   return(
