@@ -4,7 +4,7 @@ import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { CreateTodoButton } from '../CreateTodoButton';
 
-const AppUI = ({totalTodos,completedTodos,searchValue,onSearchValueSearch,setTodos,searchedTodos,changeCompleteTodo,deleteTodo}) => {
+const AppUI = ({totalTodos,completedTodos,searchValue,onSearchValueSearch,searchedTodos,changeCompleteTodo,deleteTodo}) => {
   return (  
     <>
       <TodoCounter
@@ -17,7 +17,6 @@ const AppUI = ({totalTodos,completedTodos,searchValue,onSearchValueSearch,setTod
         todos={searchedTodos} 
         />
       <TodoList
-        setTodos={setTodos} 
         todos={searchedTodos}
         changeCompleteTodo={changeCompleteTodo}
         deleteTodo={deleteTodo}

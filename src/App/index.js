@@ -2,28 +2,39 @@ import React from 'react'
 import { AppUI } from './AppUI'
 // import logo from './logo.svg';
 // import './App.css';
-const defaultTodos = [
-  {text:"hacer lista", completed:false},
-  {text:"curso", completed:true},
-  {text:"trabajar", completed:false},
-  {text:"estudiar", completed:false},
-]
 
+//Create new hook fot localstorage
+function useLocalStorage(itemName,initialValue){
+
+  const localStorageItem = localStorage.getItem(itemName)
+  let parsedItem;
+
+  if(localStorageItem){
+    //transform to object
+    parsedItem = JSON.parse(localStorageItem)
+  }
+  else{
+    localStorage.setItem(itemName,JSON.stringify(initialValue))
+    parsedItem= JSON.parse(localStorage.getItem(itemName))
+  }
+
+  const [item,setItem] = React.useState(parsedItem)
+
+
+  const saveItem = (newItem) => {
+    const itemTemp = JSON.stringify(newItem)
+    localStorage.setItem(itemName,itemTemp)
+    setItem(newItem) // reder with new information
+  }
+
+  return[item,saveItem]
+ 
+}
 
 function App() {
 
-  const localStorageTodos = localStorage.getItem("TODOS_V1")
-  let parsedTodos;
-  if(localStorageTodos){
-    //transform to object
-    parsedTodos = JSON.parse(localStorageTodos)
-  }
-  else{
-    localStorage.setItem("TODOS_V1",JSON.stringify(defaultTodos))
-    parsedTodos= JSON.parse(localStorage.getItem("TODOS_V1"))
-  }
+  const [todos,saveTodos] = useLocalStorage("TODOS_V1",[])
 
-  const [todos,setTodos] = React.useState(parsedTodos)
   const [searchValue,setSearchValue] = React.useState("")
   
   let searchedTodos = []
@@ -38,12 +49,6 @@ function App() {
 
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
-
-  const saveTodos = (newTodos) => {
-    const todosTemp = JSON.stringify(newTodos)
-    localStorage.setItem("TODOS_V1",todosTemp)
-    setTodos(newTodos) // reder with new information
-  }
 
   // functions to components
   const onSearchValueSearch = (evt) => {
@@ -64,6 +69,7 @@ function App() {
     saveTodos(todosTemp) // reder with new information
   }
 
+
   return (
     <AppUI
       totalTodos = {totalTodos}
@@ -71,7 +77,6 @@ function App() {
       searchValue = {searchValue}
       onSearchValueSearch = {onSearchValueSearch}
       searchedTodos = {searchedTodos}
-      setTodos = {setTodos}
       changeCompleteTodo = {changeCompleteTodo}
       deleteTodo = {deleteTodo}
     />
