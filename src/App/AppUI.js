@@ -4,11 +4,19 @@ import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { CreateTodoButton } from '../CreateTodoButton';
+import { Modal } from '../Modal';
+
 
 const AppUI = () => {
 
   // En vez de usar los valores dentro de context Consumer, lo uso aquí
-  const {error,loading,searchedTodos,todos} = React.useContext(TodoContext)
+  const {
+    error,
+    loading,
+    searchedTodos,
+    todos,
+    openModal,
+  } = React.useContext(TodoContext)
 
   return (  
     <>
@@ -23,6 +31,13 @@ const AppUI = () => {
           {(!loading&&!searchedTodos.length)&&<p>¡No se encontró algún TODO!</p>}
           {(!loading&&!todos.length)&&<p>¡Crea tu primer TODO!</p>}
         </TodoList> 
+        {openModal && (
+          <Modal>
+            {searchedTodos.map(todo => (
+              <p key={todo.text}>{todo.text}</p>
+            ))}
+          </Modal>
+        )}
       < CreateTodoButton/>
     </>
   );

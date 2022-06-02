@@ -7,12 +7,12 @@ function TodoProvider(props) {
   
   // se cambia la forma de llamar de [] a llaves porque en el hook también cambia
   // en luego de : se pone el nombre con el que va a trabajar en el resto de la aplicacion
-  const defaultTodos = [
+ /*  const defaultTodos = [
     {text:"hacer lista", completed:false},
     {text:"curso", completed:true},
     {text:"trabajar", completed:true},
     {text:"estudiar", completed:false},
-  ]
+  ] */
   const {
     item: todos,
     saveItem: saveTodos,
@@ -21,6 +21,8 @@ function TodoProvider(props) {
   } = useLocalStorage("TODOS_V1",[])
 
   const [searchValue,setSearchValue] = React.useState("")
+  // for modal from other portal
+  const [openModal,setOpenModal] = React.useState(false)
   
   let searchedTodos = []
 
@@ -67,6 +69,8 @@ function TodoProvider(props) {
       changeCompleteTodo,
       deleteTodo,
       todos,
+      openModal,
+      setOpenModal,
     }}>
       {props.children}
     </TodoContext.Provider>
