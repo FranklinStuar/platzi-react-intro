@@ -11,7 +11,6 @@ function TodoProvider(props) {
     {text:"hacer lista", completed:false},
     {text:"curso", completed:true},
     {text:"trabajar", completed:true},
-    {text:"trabajar", completed:false},
     {text:"estudiar", completed:false},
   ]
   const {
@@ -19,7 +18,7 @@ function TodoProvider(props) {
     saveItem: saveTodos,
     loading,
     error
-  } = useLocalStorage("TODOS_V1",defaultTodos)
+  } = useLocalStorage("TODOS_V1",[])
 
   const [searchValue,setSearchValue] = React.useState("")
   

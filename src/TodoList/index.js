@@ -11,9 +11,9 @@ function TodoList(props){
       <ul>
       {/* Alternative: React.useContext(TodoContext) */}
       <TodoContext.Consumer>
-        {({todos,changeCompleteTodo,deleteTodo}) =>
+        {({searchedTodos,changeCompleteTodo,deleteTodo}) =>
           (
-            todos.map(todo => (
+            searchedTodos.map(todo => (
               <TodoItem
                 key={todo.text}
                 text={todo.text}
