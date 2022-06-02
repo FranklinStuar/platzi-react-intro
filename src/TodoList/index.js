@@ -9,8 +9,10 @@ function TodoList(props){
     <section>
       {props.children}
       <ul>
+      {/* Alternative: React.useContext(TodoContext) */}
       <TodoContext.Consumer>
-        {({todos,changeCompleteTodo,deleteTodo}) =>{(
+        {({todos,changeCompleteTodo,deleteTodo}) =>
+          (
             todos.map(todo => (
               <TodoItem
                 key={todo.text}
@@ -21,7 +23,7 @@ function TodoList(props){
               />
             ))
           )
-        }}
+        }
       </TodoContext.Consumer>
 
       </ul>
