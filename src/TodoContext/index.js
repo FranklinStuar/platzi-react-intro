@@ -7,12 +7,19 @@ function TodoProvider(props) {
   
   // se cambia la forma de llamar de [] a llaves porque en el hook también cambia
   // en luego de : se pone el nombre con el que va a trabajar en el resto de la aplicacion
+  const defaultTodos = [
+    {text:"hacer lista", completed:false},
+    {text:"curso", completed:true},
+    {text:"trabajar", completed:true},
+    {text:"trabajar", completed:false},
+    {text:"estudiar", completed:false},
+  ]
   const {
     item: todos,
     saveItem: saveTodos,
     loading,
     error
-  } = useLocalStorage("TODOS_V1",[])
+  } = useLocalStorage("TODOS_V1",defaultTodos)
 
   const [searchValue,setSearchValue] = React.useState("")
   
