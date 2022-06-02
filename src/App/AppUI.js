@@ -5,6 +5,7 @@ import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
+import { ToDoForm } from '../TodoForm';
 
 
 const AppUI = () => {
@@ -33,9 +34,7 @@ const AppUI = () => {
         </TodoList> 
         {openModal && (
           <Modal>
-            {searchedTodos.map(todo => (
-              <p key={todo.text}>{todo.text}</p>
-            ))}
+            <ToDoForm/>
           </Modal>
         )}
       < CreateTodoButton/>
